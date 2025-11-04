@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "rag-api-collection",
+		"name": "RAG Document Processing API",
+		"description": "Collection for testing RAG Document Processing API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			}
+		},
+		{
+			"name": "Upload Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/upload",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"upload"
+					]
+				}
+			}
+		},
+		{
+			"name": "List Documents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/documents?skip=0&limit=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Document Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/documents/{{document_id}}/status",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents",
+						"{{document_id}}",
+						"status"
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Document Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/documents/{{document_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents",
+						"{{document_id}}"
+					]
+				}
+			}
+		},
+		{
+			"name": "Query Specific Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"doc_id\": {{document_id}},\n  \"query\": \"What is the main topic discussed?\",\n  \"top_k\": 5\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/documents/query",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents",
+						"query"
+					]
+				}
+			}
+		},
+		{
+			"name": "Search All Documents",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"What is the main topic discussed?\",\n  \"top_k\": 10\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/documents/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents",
+						"search"
+					]
+				}
+			}
+		},
+		{
+			"name": "Get System Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			}
+		},
+		{
+			"name": "Delete Document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/documents/{{document_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"documents",
+						"{{document_id}}"
+					]
+				}
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "document_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
